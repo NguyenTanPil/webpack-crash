@@ -1,6 +1,8 @@
 {
   "name": "webpack-crash",
   "private": "true",
+  "main": "dist/webpack-numbers.js",
+  "module": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",

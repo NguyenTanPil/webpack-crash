@@ -1,15 +1,22 @@
-function getComponent() {
-  return import('lodash')
-    .then(({ default: _ }) => {
-      const element = document.createElement('div');
+import _ from 'lodash';
+import numRef from './ref.json';
 
-      element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-      return element;
-    })
-    .catch((error) => 'An error occured while loading the component');
+export function numToWord(num) {
+  return _.reduce(
+    numRef,
+    (accum, ref) => {
+      return ref.num === num ? ref.word : accum;
+    },
+    '',
+  );
 }
 
-getComponent().then((component) => {
-  document.body.appendChild(component);
-});
+export function wordToNum(word) {
+  return _.reduce(
+    numRef,
+    (accum, ref) => {
+      return ref.word === word && word.toLowerCase() ? ref.num : accum;
+    },
+    '',
+  );
+}

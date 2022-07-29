@@ -3,13 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: {
-    index: path.resolve(__dirname, './src/index.js'),
-  },
+  entry: './src/index.js',
   output: {
-    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
+    filename: 'webpack-number.js',
+    library: {
+      name: 'webpackNumbers',
+      type: 'umd',
+    },
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -29,16 +30,4 @@ module.exports = {
       template: './src/template.html',
     }),
   ],
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_module[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    },
-  },
 };
