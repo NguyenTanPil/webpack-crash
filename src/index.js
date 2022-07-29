@@ -1,9 +1,21 @@
 import _ from 'lodash';
+import './style.css';
+import Icon from './icons.png';
+import Data from './data.xml';
+import Notes from './data.csv';
 
 const component = () => {
   const element = document.createElement('div');
 
-  element.innerHTML = lodash.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.classList.add('container');
+
+  const myIcon = new Image();
+  myIcon.src = Icon;
+  element.appendChild(myIcon);
+
+  console.log(Data);
+  console.log(Notes);
 
   return element;
 };
