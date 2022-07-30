@@ -1,22 +1,11 @@
-import _ from 'lodash';
-import numRef from './ref.json';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-export function numToWord(num) {
-  return _.reduce(
-    numRef,
-    (accum, ref) => {
-      return ref.num === num ? ref.word : accum;
-    },
-    '',
-  );
-}
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-export function wordToNum(word) {
-  return _.reduce(
-    numRef,
-    (accum, ref) => {
-      return ref.word === word && word.toLowerCase() ? ref.num : accum;
-    },
-    '',
-  );
-}
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

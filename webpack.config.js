@@ -2,32 +2,35 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'webpack-number.js',
-    library: {
-      name: 'webpackNumbers',
-      type: 'umd',
-    },
+    filename: 'index.bundle.js',
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'dist'),
-    },
-    port: 4000,
-    open: true,
-    hot: true,
-    compress: true,
-    historyApiFallback: true,
+    port: 3000,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Caching',
+      title: 'React App',
       filename: 'index.html',
-      template: './src/template.html',
+      template: './public/index.html',
     }),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
+  },
 };
